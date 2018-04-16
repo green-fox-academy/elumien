@@ -1,0 +1,24 @@
+/*body {
+    color: red;
+}*/
+
+body 
+{
+    background-color: black;
+}
+header
+{
+    background-color: #333333;
+}
+
+nav:ul:li
+{
+    display: inline;
+}
+
+div.main
+{
+    /*padding: 0px 100px;*/
+    margin: -5px 100px;
+    background-image: url("topography.png");
+}
