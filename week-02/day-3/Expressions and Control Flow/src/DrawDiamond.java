@@ -1,19 +1,22 @@
 import java.util.Scanner;
 
-public class DrawPyramid
-{
-    public static void main(String[] args)
-    {
+public class DrawDiamond {
+
+    public static void main(String[] args) {
+
         // Write a program that reads a number from the standard input, then draws a
-        // pyramid like this:
+        // diamond like this:
         //
         //
         //    *
         //   ***
         //  *****
         // *******
+        //  *****
+        //   ***
+        //    *
         //
-        // The pyramid should have as many lines as the number was
+        // The diamond should have as many lines as the number was
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Give me a number!");
@@ -42,5 +45,8 @@ public class DrawPyramid
             star += 2;
         }
 
+
     }
+
 }
+
