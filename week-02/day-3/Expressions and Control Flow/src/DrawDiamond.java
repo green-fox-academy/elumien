@@ -25,28 +25,53 @@ public class DrawDiamond {
 
         int star = 1;
 
-        int empty = rowNumber-1;
+        int empty = rowNumber - 1;
 
-        for (int i = 0; i < rowNumber; i++)
-        {
-            String pyramid = "";
 
-            for (int j = 0; j < empty; j++) {
-                pyramid += " ";
+        for (int i = 0; i < rowNumber; i++) {
+            String diamond = "";
+
+            if (i < rowNumber / 2) {
+                for (int j = 0; j < empty; j++) {
+                    diamond += " ";
+                }
+
+                for (int k = 0; k < star; k++) {
+                    diamond += "*";
+                }
+
+                if(!(i ==rowNumber / 2 -1  && (rowNumber & 1) == 0))
+                {empty -= 1;
+                star += 2;}
+
+                System.out.println(diamond);
+
             }
 
-            for (int k = 0; k < star; k++) {
-                pyramid += "*";
+            else {
+                for (int j = 0; j < empty; j++) {
+                    diamond += " ";
+                }
+
+                for (int k = 0; k < star; k++) {
+                    diamond += "*";
+                }
+
+
+                    empty += 1;
+                    star -= 2;
+
+
+                System.out.println(diamond);
+
+
             }
 
-            System.out.println(pyramid);
 
-            empty -= 1;
-            star += 2;
         }
-
-
     }
 
 }
+
+
 
