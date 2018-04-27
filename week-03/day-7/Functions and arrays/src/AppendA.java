@@ -1,8 +1,7 @@
-// - Create an array variable named `nimals`
+public class AppendA {
+    // - Create an array variable named `nimals`
 //   with the following content: `["kuty", "macsk", "cic"]`
 // - Add all elements an `"a"` at the end
-
-public class AppendA {
     public static void main(String[] args) {
 
         String[] nimals = {"kuty", "macsk", "cic"};
@@ -11,15 +10,12 @@ public class AppendA {
             nimals[i] += "a";
         }
 
-        for (String animal: nimals) {
+        for (String animal : nimals) {
 
             System.out.println(animal);
 
         }
 
-        }
-
-
-
     }
+}
 
