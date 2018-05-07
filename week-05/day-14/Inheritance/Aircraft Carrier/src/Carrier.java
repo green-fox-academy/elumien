@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Carrier {
 
 //    Create a class that represents an aircraft-carrier
@@ -27,4 +29,81 @@ public class Carrier {
 //    Type F16, Ammo: 8, Base Damage: 30, All Damage: 240
 //    If the health points are 0 than it should give back: It's dead Jim :(
 
+    ArrayList<Aircraft> aircrafts;
+    int ammo;
+    int HP;
+
+    public Carrier(int ammo, int HP) {
+        aircrafts = new ArrayList<>();
+        this.ammo = ammo;
+        this.HP = HP;
+    }
+
+    public void add(Aircraft aircraft)
+    {
+        aircrafts.add(aircraft);
+    }
+
+    public void fiil()
+    {
+        int ammoNeedSum = 0;
+
+        for (Aircraft a : aircrafts) {
+            ammoNeedSum += a.maxAmmo - a.ammo;
+        }
+
+        if (ammoNeedSum >= ammo)
+        {
+            for (Aircraft a : aircrafts) {
+                a.ammo = a.maxAmmo;
+            }
+
+            this.ammo -= ammoNeedSum;
+        }
+
+        else
+        {
+
+            while (ammo > 0)
+            {
+                int ammoNeed;
+
+                for (Aircraft a : aircrafts) {
+
+                    ammoNeed = a.maxAmmo - a.ammo;
+
+                    if (a.priority && ammo - ammoNeed >= 0) {
+                        a.ammo = a.maxAmmo;
+                        ammo -= ammoNeed;
+                    }
+                    else if (a.priority)
+                    {
+                        a.ammo += ammo;
+                        ammo = 0;
+                        break;
+                    }
+                }
+
+                for (Aircraft a : aircrafts) {
+
+                    ammoNeed = a.maxAmmo - a.ammo;
+
+                    if (!a.priority && ammo - ammoNeed >= 0) {
+                        a.ammo = a.maxAmmo;
+                        ammo -= ammoNeed;
+                    }
+                    else if (!a.priority)
+                    {
+                        a.ammo += ammo;
+                        ammo = 0;
+                        break;
+                    }
+                }
+            }
+
+            this.ammo = 0;
+        }
+
+
+    }
 }

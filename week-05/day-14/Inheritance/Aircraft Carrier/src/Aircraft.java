@@ -28,4 +28,58 @@ public class Aircraft {
 //    isPriority
 //    It should return if the aircraft is priority in the ammo fill queue. It's true for F35 and false for F16
 
+    String type;
+    int maxAmmo;
+    int baseDamage;
+    int ammo;
+    boolean priority;
+
+    public Aircraft() {
+        this.ammo = 0;
+    }
+
+    public int fight()
+    {
+        int damage = baseDamage * ammo;
+        this.ammo = 0;
+
+        return damage;
+    }
+
+    public int refill(int ammoFilled) {
+
+        int leftoverAmmo;
+
+        if (ammoFilled <= (maxAmmo - ammo)) {
+            ammo += ammoFilled;
+            leftoverAmmo = 0;
+        }
+        else{
+            ammo = maxAmmo;
+            leftoverAmmo = (maxAmmo - ammo) - ammoFilled;
+        }
+
+        return leftoverAmmo;
+
+    }
+
+    public String getType()
+    {
+        return this.type;
+    }
+
+    public String getStatus(){
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Type: " + type +", Ammo: " + ammo + ", Base Damage: " + baseDamage + ", All Damage: " + ammo*baseDamage + "\n");
+
+        String status = sb.toString();
+
+        return status;
+    }
+
+    public boolean isPriority() {
+         return priority;
+    }
 }
