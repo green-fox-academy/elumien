@@ -1,3 +1,4 @@
+import javax.xml.stream.events.Characters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -5,26 +6,21 @@ import java.util.List;
 
 public class Anagram {
 
-    public static void main(String[] args) {
-
-        Anagram a = new Anagram();
-        a.Anagram("alma", "körte");
-
-    }
 
     public boolean Anagram(String string1, String string2) {
 
         char[] stringCharArray = string1.toCharArray();
 
-        List stringCharList = Arrays.asList(stringCharArray);
+        char[] stringCharArrayReversed = new char[stringCharArray.length];
 
-        Collections.reverse(stringCharList);
+       for (int i = 0; i < stringCharArray.length; i++) {
 
-        string1 = stringCharList.toString();
+           stringCharArrayReversed[i] = stringCharArray[stringCharArray.length-1-i];
+       }
 
-        System.out.println(string1);
+        string1 = new String(stringCharArrayReversed);
 
-        return true;
+        return string1.equals(string2);
     }
 
 
