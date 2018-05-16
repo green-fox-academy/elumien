@@ -21,7 +21,7 @@ public class CountLettersTest {
         expectedDictionary.put('a', 1);
         expectedDictionary.put('p', 1);
 
-        assertEquals(countLetters.countLetters(string), expectedDictionary);
+        assertEquals(expectedDictionary, countLetters.countLetters(string));
 
     }
 }
