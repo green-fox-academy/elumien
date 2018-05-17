@@ -1,7 +1,7 @@
 import java.util.*;
 
-public class QuoteSwap{
-    public static void main(String... args){
+public class QuoteSwap {
+    public static void main(String... args) {
         ArrayList<String> list = new ArrayList<String>(Arrays.asList("What", "I", "do", "create,", "I", "cannot", "not", "understand."));
 
         // Accidentally I messed up this quote from Richard Feynman.
@@ -15,8 +15,23 @@ public class QuoteSwap{
 
     }
 
-    private static boolean quoteSwap(ArrayList<String> list) {
+    private static String quoteSwap(ArrayList<String> list) {
 
-        return true;
+        int indexOfCannot = list.indexOf("cannot");
+        int indexOfDo = list.indexOf("do");
+
+        list.remove("cannot");
+        list.remove("do");
+
+        list.add(indexOfDo, "cannot");
+        list.add(indexOfCannot, "do");
+
+        String quote = list.toString();
+        quote = quote.replace("[", "");
+        quote = quote.replace("]", "");
+        quote = quote.replace(",", "");
+
+        return quote;
+
     }
 }
