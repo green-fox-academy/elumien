@@ -7,7 +7,7 @@ public class PalindromeBuilder {
         System.out.println(createPalindrome("123"));
     }
 
-    private static String  createPalindrome(String word) {
+    private static String createPalindrome(String word) {
 
         String reversedWord = new StringBuilder(word).reverse().toString();
         word += reversedWord;

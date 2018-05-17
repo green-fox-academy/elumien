@@ -1,4 +1,6 @@
-public class Arrays {
+import java.util.List;
+
+public class Arrais {
     public static void main(String[] args) {
         int[] myList = {1, 2, 3, 6};
 
@@ -10,4 +12,5 @@ public class Arrays {
             System.out.println(myList[i] + " ");
         }
     }
+
 }
