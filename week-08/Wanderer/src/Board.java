@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class Board extends JComponent implements KeyListener {
 
@@ -31,40 +35,37 @@ public class Board extends JComponent implements KeyListener {
 
     private void drawMapOfTiles(Graphics graphics) {
 
-        int x = 0;
-        int y = 0;
-
-        int numberOfTiles = 10;
-        int sizeOfTiles = 72;
-
-        for (int currentX = 0; currentX < numberOfTiles; currentX++) {
-            for (int currentY = 0; currentY < numberOfTiles; currentY++) {
-
-                EmptyTile et = new EmptyTile(x,y);
-                et.draw(graphics);
-                y += sizeOfTiles;
-            }
-            x += sizeOfTiles;
-            y = 0;
+        try { // Required by Files.readAllLines(filePath);
+            // Reads the content from `lorem-psum.txt` in the `assets` folder line by line to a String List
+            Path filePath = Paths.get("src/txt/wall.txt");
+            List<String> lines = Files.readAllLines(filePath);
+            System.out.println(lines.get(0)); // Prints the first line of the file
+        } catch (Exception e) {
+            System.out.println("Uh-oh, could not read the file!");
         }
 
+//        int x = 0;
+//        int y = 0;
+//
+//        int numberOfTiles = 10;
+//        int sizeOfTiles = 72;
+//
+//        for (int currentX = 0; currentX < numberOfTiles; currentX++) {
+//            for (int currentY = 0; currentY < numberOfTiles; currentY++) {
+//
+//                if (currentY == 4) {
+//                    NotEmptyTile net = new NotEmptyTile(x,y);
+//                    net.draw(graphics);
+//                } else {
+//                    EmptyTile et = new EmptyTile(x,y);
+//                    et.draw(graphics);
+//                }
+//                y += sizeOfTiles;
+//            }
+//            x += sizeOfTiles;
+//            y = 0;
+//        }
 
-    }
-
-    public static void main(String[] args) {
-        // Here is how you set up a new window and adding our board to it
-        JFrame frame = new JFrame("RPG Game");
-        Board board = new Board();
-        frame.add(board);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.pack();
-        // Here is how you can add a key event listener
-        // The board object will be notified when hitting any key
-        // with the system calling one of the below 3 methods
-        frame.addKeyListener(board);
-        // Notice (at the top) that we can only do this
-        // because this Board class (the type of the board object) is also a KeyListener
     }
 
     // To be a KeyListener the class needs to have these 3 methods in it
