@@ -45,7 +45,7 @@ public class Area{
 
         for (ArrayList<Integer> ints: wall) {
 
-            System.out.println(ints.get(0) + " , " + ints.get(1));
+            //System.out.println(ints.get(0) + " , " + ints.get(1));
 
             NotEmptyTile net = new NotEmptyTile(ints.get(0)*sizeOfGameObject,ints.get(1)*sizeOfGameObject);
             net.draw(graphics);

@@ -11,7 +11,8 @@ public class Board extends JComponent implements KeyListener {
     static int sizeOfBoard;
     static int sizeOfGameObject;
 
-    GameObject hero = new GameObject("src/img/hero-down.png", 0, 0);
+    //GameObject hero = new GameObject("src/img/hero-down.png", 0, 0);
+    Hero hero = new Hero();
 
     public Board() {
 
@@ -76,12 +77,16 @@ public class Board extends JComponent implements KeyListener {
         // When the up or down keys hit, we change the position of our box
         if (e.getKeyCode() == KeyEvent.VK_UP && hero.posY != 0) {
             hero.posY -= sizeOfGameObject;
+            hero.turnUp();
         } else if(e.getKeyCode() == KeyEvent.VK_DOWN && hero.posY != 9*sizeOfGameObject) {
             hero.posY += sizeOfGameObject;
+            hero.turnDown();
         } else if(e.getKeyCode() == KeyEvent.VK_LEFT  && hero.posX != 0) {
             hero.posX -= sizeOfGameObject;
+            hero.turnLeft();
         } else if(e.getKeyCode() == KeyEvent.VK_RIGHT  && hero.posX != 9*sizeOfGameObject) {
             hero.posX += sizeOfGameObject;
+            hero.turnRight();
         }
         // and redraw to have a new picture with the new coordinates
         repaint();
