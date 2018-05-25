@@ -31,15 +31,7 @@ public class Area{
 
     public static void drawNotEmptyTiles(List<String> lines, Graphics graphics) {
 
-        ArrayList<ArrayList<Integer>> wall = new ArrayList<>();
-
-        for (String line : lines) {
-
-            ArrayList<Integer> coordinates = new ArrayList<>();
-            coordinates.add(Character.getNumericValue(line.charAt(0)));
-            coordinates.add(Character.getNumericValue(line.charAt(2)));
-            wall.add(coordinates);
-        }
+        ArrayList<ArrayList<Integer>> wall = getWallList(lines);
 
         //System.out.println(wall.get(0)[0] +  " , " + wall.get(0)[0]);
 
@@ -51,6 +43,19 @@ public class Area{
             net.draw(graphics);
         }
 
+    }
+
+    public static ArrayList<ArrayList<Integer>> getWallList(List<String> lines) {
+        ArrayList<ArrayList<Integer>> wall = new ArrayList<>();
+
+        for (String line : lines) {
+
+            ArrayList<Integer> coordinates = new ArrayList<>();
+            coordinates.add(Character.getNumericValue(line.charAt(0)));
+            coordinates.add(Character.getNumericValue(line.charAt(2)));
+            wall.add(coordinates);
+        }
+        return wall;
     }
 
     private static void drawEmptyTiles(Graphics graphics) {

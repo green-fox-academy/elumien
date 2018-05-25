@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Board extends JComponent implements KeyListener {
 
@@ -10,9 +12,12 @@ public class Board extends JComponent implements KeyListener {
     static Graphics graphics;
     static int sizeOfBoard;
     static int sizeOfGameObject;
+    static ArrayList<ArrayList<Integer>> wall = Area.getWallList(Area.readMapFile());
+    static Random random = new Random();
 
     //GameObject hero = new GameObject("src/img/hero-down.png", 0, 0);
     Hero hero = new Hero();
+    //ArrayList<Monster> monsters;
 
     public Board() {
 
@@ -34,29 +39,43 @@ public class Board extends JComponent implements KeyListener {
         //Area.createArea(graphics);
         Area.createArea(graphics);
         hero.draw(graphics);
-
-    }
-
-    public static void main(String[] args) {
-        // Here is how you set up a new window and adding our board to it
-        JFrame frame = new JFrame("RPG Game title");
-        Board board = new Board();
-        frame.add(board);
-        Board.setGraphics(graphics);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.pack();
-        // Here is how you can add a key event listener
-        // The board object will be notified when hitting any key
-        // with the system calling one of the below 3 methods
-        frame.addKeyListener(board);
-        // Notice (at the top) that we can only do this
-        // because this Board class (the type of the board object) is also a KeyListener
+        createMonsters(graphics);
+        //for (Monster monster : monsters) {
+        //    monster.draw(graphics);
+        //}
 
 
     }
 
-    private static void setGraphics(Graphics graphics) {
+    public void createMonsters(Graphics graphics) {
+
+        for (int i = 0; i < 3; i++) {
+            generateRandomMonster(graphics);
+        }
+
+    }
+
+    public void generateRandomMonster(Graphics graphics) {
+        int x = random.nextInt(10)*sizeOfGameObject;
+        int y = random.nextInt(10)*sizeOfGameObject;
+        ArrayList<Integer> xy = new ArrayList();
+        xy.add(x/sizeOfGameObject);
+        xy.add(y/sizeOfGameObject);
+
+        if (wall.contains(xy)) {
+            generateRandomMonster(graphics);
+        }
+
+        else {
+            Monster monster = new Monster(x,y);
+            monster.draw(graphics);
+        }
+
+    }
+
+
+
+    public static void setGraphics(Graphics graphics) {
         Board.graphics = graphics;
     }
 
@@ -75,18 +94,52 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         // When the up or down keys hit, we change the position of our box
+
+
         if (e.getKeyCode() == KeyEvent.VK_UP && hero.posY != 0) {
-            hero.posY -= sizeOfGameObject;
-            hero.turnUp();
+
+            ArrayList<Integer> xy = new ArrayList<>();
+            xy.add(hero.posX/sizeOfGameObject);
+            xy.add(hero.posY/sizeOfGameObject - 1);
+
+            if (!wall.contains(xy)) {
+                hero.posY -= sizeOfGameObject;
+                hero.turnUp();
+            }
+
         } else if(e.getKeyCode() == KeyEvent.VK_DOWN && hero.posY != 9*sizeOfGameObject) {
-            hero.posY += sizeOfGameObject;
-            hero.turnDown();
+
+            ArrayList<Integer> xy = new ArrayList<>();
+            xy.add(hero.posX/sizeOfGameObject);
+            xy.add(hero.posY/sizeOfGameObject + 1);
+
+            if (!wall.contains(xy)) {
+                hero.posY += sizeOfGameObject;
+                hero.turnDown();
+            }
+
         } else if(e.getKeyCode() == KeyEvent.VK_LEFT  && hero.posX != 0) {
-            hero.posX -= sizeOfGameObject;
-            hero.turnLeft();
+
+            ArrayList<Integer> xy = new ArrayList<>();
+            xy.add(hero.posX/sizeOfGameObject - 1);
+            xy.add(hero.posY/sizeOfGameObject);
+
+            if (!wall.contains(xy)) {
+                hero.posX -= sizeOfGameObject;
+                hero.turnLeft();
+            }
+
         } else if(e.getKeyCode() == KeyEvent.VK_RIGHT  && hero.posX != 9*sizeOfGameObject) {
-            hero.posX += sizeOfGameObject;
-            hero.turnRight();
+
+            ArrayList<Integer> xy = new ArrayList<>();
+            xy.add(hero.posX/sizeOfGameObject + 1);
+            xy.add(hero.posY/sizeOfGameObject);
+
+            if (!wall.contains(xy)) {
+                hero.posX += sizeOfGameObject;
+                hero.turnRight();
+            }
+
         }
         // and redraw to have a new picture with the new coordinates
         repaint();

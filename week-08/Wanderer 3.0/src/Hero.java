@@ -1,5 +1,4 @@
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,7 +13,7 @@ public class Hero extends GameObject {
         try {
             image = ImageIO.read(new File("src/img/hero-up.png"));
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -22,7 +21,7 @@ public class Hero extends GameObject {
         try {
             image = ImageIO.read(new File("src/img/hero-down.png"));
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -30,7 +29,7 @@ public class Hero extends GameObject {
         try {
             image = ImageIO.read(new File("src/img/hero-left.png"));
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -38,7 +37,7 @@ public class Hero extends GameObject {
         try {
             image = ImageIO.read(new File("src/img/hero-right.png"));
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
