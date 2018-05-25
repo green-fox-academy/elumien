@@ -9,6 +9,8 @@ public class Hero extends GameObject {
         super("src/img/hero-down.png", 0, 0);
     }
 
+
+
     public void turnUp() {
         try {
             image = ImageIO.read(new File("src/img/hero-up.png"));
@@ -40,6 +42,7 @@ public class Hero extends GameObject {
             //e.printStackTrace();
         }
     }
+
 
 }
 

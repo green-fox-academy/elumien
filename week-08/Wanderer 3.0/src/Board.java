@@ -7,17 +7,14 @@ import java.util.Random;
 
 public class Board extends JComponent implements KeyListener {
 
-    //int testBoxX;
-    //int testBoxY;
     static Graphics graphics;
     static int sizeOfBoard;
     static int sizeOfGameObject;
-    static ArrayList<ArrayList<Integer>> wall = Area.getWallList(Area.readMapFile());
+    public static ArrayList<ArrayList<Integer>> wall = Area.getWallList(Area.readMapFile());
     static Random random = new Random();
 
-    //GameObject hero = new GameObject("src/img/hero-down.png", 0, 0);
-    Hero hero = new Hero();
-    //ArrayList<Monster> monsters;
+    static Hero hero = new Hero();
+    static ArrayList<Monster> monsters = new ArrayList<>();
 
     public Board() {
 
@@ -39,40 +36,21 @@ public class Board extends JComponent implements KeyListener {
         //Area.createArea(graphics);
         Area.createArea(graphics);
         hero.draw(graphics);
-        createMonsters(graphics);
-        //for (Monster monster : monsters) {
-        //    monster.draw(graphics);
-        //}
-
-
-    }
-
-    public void createMonsters(Graphics graphics) {
-
-        for (int i = 0; i < 3; i++) {
-            generateRandomMonster(graphics);
-        }
-
-    }
-
-    public void generateRandomMonster(Graphics graphics) {
-        int x = random.nextInt(10)*sizeOfGameObject;
-        int y = random.nextInt(10)*sizeOfGameObject;
-        ArrayList<Integer> xy = new ArrayList();
-        xy.add(x/sizeOfGameObject);
-        xy.add(y/sizeOfGameObject);
-
-        if (wall.contains(xy)) {
-            generateRandomMonster(graphics);
-        }
-
-        else {
-            Monster monster = new Monster(x,y);
+        for (Monster monster : monsters) {
             monster.draw(graphics);
         }
 
+
     }
 
+    public static void createMonsters(Graphics graphics) {
+
+        for (int i = 0; i < 3; i++) {
+            Monster monster = new Monster();
+            monsters.add(monster);
+        }
+
+    }
 
 
     public static void setGraphics(Graphics graphics) {
@@ -142,42 +120,11 @@ public class Board extends JComponent implements KeyListener {
 
         }
         // and redraw to have a new picture with the new coordinates
+
+
         repaint();
     }
 
-//    private void drawMapOfTiles(Graphics graphics) {
-//
-////        try { // Required by Files.readAllLines(filePath);
-////            // Reads the content from `lorem-psum.txt` in the `assets` folder line by line to a String List
-////            Path filePath = Paths.get("src/txt/wall.txt");
-////            List<String> lines = Files.readAllLines(filePath);
-////            System.out.println(lines.get(0)); // Prints the first line of the file
-////        } catch (Exception e) {
-////            System.out.println("Uh-oh, could not read the file!");
-////        }
-//
-//        int x = 0;
-//        int y = 0;
-//
-//        int numberOfTiles = 10;
-//        int sizeOfTiles = 72;
-//
-//        for (int currentX = 0; currentX < numberOfTiles; currentX++) {
-//            for (int currentY = 0; currentY < numberOfTiles; currentY++) {
-//
-//                if (currentY == 4) {
-//                    NotEmptyTile net = new NotEmptyTile(x,y);
-//                    net.draw(graphics);
-//                } else {
-//                    EmptyTile et = new EmptyTile(x,y);
-//                    et.draw(graphics);
-//                }
-//                y += sizeOfTiles;
-//            }
-//            x += sizeOfTiles;
-//            y = 0;
-//        }
-//
-//    }
+
 }
 

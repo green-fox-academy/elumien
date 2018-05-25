@@ -20,5 +20,6 @@ public class Main {
         frame.addKeyListener(board);
         // Notice (at the top) that we can only do this
         // because this Board class (the type of the board object) is also a KeyListener
+        Board.createMonsters(graphics);
     }
 }

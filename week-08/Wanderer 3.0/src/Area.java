@@ -20,7 +20,6 @@ public class Area{
         try {
             Path filePath = Paths.get("src/txt/wall.txt");
             List<String> lines = Files.readAllLines(filePath);
-            //System.out.println(lines.get(0));
 
             return  lines;
         } catch (Exception e) {
@@ -33,11 +32,7 @@ public class Area{
 
         ArrayList<ArrayList<Integer>> wall = getWallList(lines);
 
-        //System.out.println(wall.get(0)[0] +  " , " + wall.get(0)[0]);
-
         for (ArrayList<Integer> ints: wall) {
-
-            //System.out.println(ints.get(0) + " , " + ints.get(1));
 
             NotEmptyTile net = new NotEmptyTile(ints.get(0)*sizeOfGameObject,ints.get(1)*sizeOfGameObject);
             net.draw(graphics);
@@ -59,15 +54,6 @@ public class Area{
     }
 
     private static void drawEmptyTiles(Graphics graphics) {
-
-//        try { // Required by Files.readAllLines(filePath);
-//            // Reads the content from `lorem-psum.txt` in the `assets` folder line by line to a String List
-//            Path filePath = Paths.get("src/txt/wall.txt");
-//            List<String> lines = Files.readAllLines(filePath);
-//            System.out.println(lines.get(0)); // Prints the first line of the file
-//        } catch (Exception e) {
-//            System.out.println("Uh-oh, could not read the file!");
-//        }
 
         int x = 0;
         int y = 0;
