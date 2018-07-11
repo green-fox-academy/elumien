@@ -12,6 +12,13 @@ public class BankAccount {
     public BankAccount() {
     }
 
+
+    public BankAccount(String name, String animalType, int balance) {
+        this.name = name;
+        this.animalType = animalType;
+        this.balance = balance;
+    }
+
     public String getName() {
         return name;
     }
@@ -35,4 +42,5 @@ public class BankAccount {
     public void setBalance(int balance) {
         this.balance = balance;
     }
+
 }
