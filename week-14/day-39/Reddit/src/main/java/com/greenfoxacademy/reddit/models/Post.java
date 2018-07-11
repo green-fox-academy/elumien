@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,7 +18,7 @@ public class Post {
     @Id
     @GeneratedValue
     @Column(name = "T_POST_ID")
-    public Long id;
+    private Long id;
 
     @Column(name = "TITLE")
     private String title;
@@ -28,9 +27,24 @@ public class Post {
     private String url;
 
     @Column(name = "TIMESTAMP")
-    public Timestamp timestamp;
+    private String timestamp;
 
     @Column(name = "SCORE")
     private Long score;
 
+    /*public Post(String title, String url) {
+        this.title = title;
+        this.url = url;
+        this.score = 0L;
+    }*/
+
+    public Post(String title, String url, String timestamp, Long score) {
+        this.title = title;
+        this.url = url;
+        this.timestamp = timestamp;
+        this.score = score;
+    }
+
+    public Post() {
+    }
 }
